@@ -1,0 +1,70 @@
+body {
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 70px;
+}
+
+.code {
+  margin-left: 5px;
+  padding: 3px 6px;
+  background: #ddd;
+  color: #EC1B4B;
+}
+
+.example {
+  margin-left: 40px;
+}
+
+.under-line {
+   text-decoration-line: underline;
+}
+
+.color-name {
+  text-decoration-color: blue;
+}
+
+.hex {
+  text-decoration-color: #F26A44;
+}
+
+.rgba {
+  text-decoration-color: rgba(46, 149, 152, .4);
+}
+
+.thickness-px {
+  text-decoration-thickness: 5px;
+}
+
+.thickness-em {
+  text-decoration-thickness: .2em;
+}
+
+.offset-px {
+  text-underline-offset: 4px;
+}
+
+.offset-em {
+  text-underline-offset: .1em;
+}
+
+.double {
+  text-decoration-style: double;
+}
+
+.dotted {
+  text-decoration-style: dotted;
+}
+
+.dashed {
+  text-decoration-style: dashed;
+}
+
+.wavy {
+  text-decoration-style: wavy;
+}
+
+.skip-ink-none {
+  text-decoration-skip-ink: none;
+}
