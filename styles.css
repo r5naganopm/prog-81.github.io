@@ -64,3 +64,14 @@
   left: 10px;
   font-size: 18px;
 }
+#hint {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 18px;
+  color: red;
+}
+
+#hint.hidden {
+  display: none;
+}
