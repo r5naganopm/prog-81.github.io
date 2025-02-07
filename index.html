@@ -6,18 +6,15 @@
 <body>
     <h1>訪問者数: <span id="visitor-count">0</span></h1>
 
-    <script>
-        // 訪問者数をローカルストレージから取得または初期化
-        let visitorCount = localStorage.getItem('visitorCount') || 0;
+    <button onclick="showAdminPanel()">管理者ページ</button>
+    <div id="admin-panel" style="display: none;">
+        <h2>管理者ページ</h2>
+        <label for="password">パスワード:</label>
+        <input type="password" id="password">
+        <button onclick="authenticateAdmin()">認証</button>
+        <p id="admin-message"></p>
+    </div>
 
-        // 訪問者数を1つ増やす
-        visitorCount++;
-
-        // 訪問者数をローカルストレージに保存
-        localStorage.setItem('visitorCount', visitorCount);
-
-        // 訪問者数を表示
-        document.getElementById('visitor-count').textContent = visitorCount;
-    </script>
+    <script src="counter.js"></script>
 </body>
 </html>
