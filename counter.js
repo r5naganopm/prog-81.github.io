@@ -16,10 +16,16 @@ function showAdminPanel() {
 function authenticateAdmin() {
     const enteredPassword = document.getElementById('password').value;
     if (enteredPassword === adminPassword) {
-        document.getElementById('admin-message').textContent = `現在の訪問者数: ${visitorCount}`;
+        showVisitorCount();
     } else {
         document.getElementById('admin-message').textContent = 'パスワードが正しくありません。';
     }
+}
+
+// 訪問者数を表示
+function showVisitorCount() {
+    const visitorCount = localStorage.getItem('visitorCount');
+    document.getElementById('admin-message').textContent = `現在の訪問者数: ${visitorCount}`;
 }
 
 // 訪問者数を1増やす
