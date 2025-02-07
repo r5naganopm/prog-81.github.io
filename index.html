@@ -1,30 +1,23 @@
- <link rel="stylesheet" type="text/css" href="stylesheet.css">
-<h1>text-decorationで作るアンダーライン</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>訪問者カウンター</title>
+</head>
+<body>
+    <h1>訪問者数: <span id="visitor-count">0</span></h1>
 
-<h2>色の変更(text-decoration-color)</h2>
-<p>・指定なし<span class="code">(text-decoration-color: currentcolor;)</span></p><p class="example">テキストに<span class="under-line">アンダーライン</span>を引きます。</p>
-<p>・色名で指定<span class="code">text-decoration-color: blue;</span></p><p class="example">テキストに<span class="under-line color-name">アンダーライン</span>を引きます。</p>
-<p>・カラーコードで指定<span class="code">text-decoration-color: #F26A44;</span></p><p class="example">テキストに<span class="under-line hex">アンダーライン</span>を引きます。</p>
-<p>・rgbaで指定<span class="code">text-decoration-color: rgba(46, 149, 152, .4);</span></p><p class="example">テキストに<span class="under-line rgba">アンダーライン</span>を引きます。</p>
+    <script>
+        // 訪問者数をローカルストレージから取得または初期化
+        let visitorCount = localStorage.getItem('visitorCount') || 0;
 
-<h2>太さの変更(text-decoration-thickness)</h2>
-<p>・指定なし<span class="code">(text-decoration-thickness: auto;)</span></p><p class="example">テキストに<span class="under-line">アンダーライン</span>を引きます。</p>
-<p>・pxで指定<span class="code">text-decoration-thickness: 5px;</span></p><p class="example">テキストに<span class="under-line thickness-px">アンダーライン</span>を引きます。</p>
-<p>・emで指定<span class="code">text-decoration-thickness: .2em;</span></p><p class="example">テキストに<span class="under-line thickness-em">アンダーライン</span>を引きます。</p>
+        // 訪問者数を1つ増やす
+        visitorCount++;
 
-<h2>位置の調整(text-underline-offset)</h2>
-<p>・指定なし<span class="code">(text-underline-offset: auto;)</span></p><p class="example">テキストに<span class="under-line">アンダーライン</span>を引きます。</p>
-<p>・pxで指定<span class="code">text-underline-offset: 4px;</span></p><p class="example">テキストに<span class="under-line offset-px">アンダーライン</span>を引きます。</p>
-<p>・emで指定<span class="code">text-underline-offset: .1em;</span></p><p class="example">テキストに<span class="under-line offset-em">アンダーライン</span>を引きます。</p>
+        // 訪問者数をローカルストレージに保存
+        localStorage.setItem('visitorCount', visitorCount);
 
-<h2>スタイルの変更(text-decoration-style)</h2>
-<p>・指定なし<span class="code">(text-decoration-style: solid;)</span></p><p class="example">テキストに<span class="under-line">アンダーライン</span>を引きます。</p>
-<p>・double<span class="code">text-decoration-style: double;</span></p><p class="example">テキストに<span class="under-line double">アンダーライン</span>を引きます。</p>
-<p>・dotted<span class="code">text-decoration-style: dotted;</span></p><p class="example">テキストに<span class="under-line dotted">アンダーライン</span>を引きます。</p>
-<p>・dashed<span class="code">text-decoration-style: dashed;</span></p><p class="example">テキストに<span class="under-line dashed">アンダーライン</span>を引きます。</p>
-<p>・wavy<span class="code">text-decoration-style: wavy;</span></p><p class="example">テキストに<span class="under-line wavy">アンダーライン</span>を引きます。</p>
-
-
-<h2>その他：text-decoration-skip-ink</h2>
-<p>・指定なし<span class="code">(text-decoration-skip-ink: auto;)</span></p><p class="example">一部の文字では<span class="under-line">このgjqypのように</span>アンダーラインが途切れます。</p>
-<p>・"none"を指定<span class="code">text-decoration-skip-ink: none;</span></p><p class="example">どのような文字でも<span class="under-line skip-ink-none">このgjqypのように</span>アンダーラインが途切れません。</p>
+        // 訪問者数を表示
+        document.getElementById('visitor-count').textContent = visitorCount;
+    </script>
+</body>
+</html>
