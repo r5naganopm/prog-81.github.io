@@ -1,28 +1,27 @@
-const door = document.getElementById('door');
-const key = document.getElementById('key');
-const message = document.getElementById('message');
-const hint = document.getElementById('hint');
+// ランダムな数を生成する
+const answer = Math.floor(Math.random() * 100) + 1;
 
-let hasKey = false;
-let hintShown = false;
+// ゲームの要素を取得する
+const guessInput = document.getElementById('guessInput');
+const guessButton = document.getElementById('guessButton');
+const result = document.getElementById('result');
 
-key.addEventListener('click', () => {
-  key.classList.add('hidden');
-  hasKey = true;
-  message.textContent = 'You found the key! Now unlock the door.';
-  hint.classList.add('hidden');
-});
+// ボタンクリックイベントのリスナーを設定する
+guessButton.addEventListener('click', function() {
+  const guess = parseInt(guessInput.value);
 
-door.addEventListener('click', () => {
-  if (hasKey) {
-    door.classList.remove('locked');
-    door.classList.add('unlocked');
-    message.textContent = 'Congratulations! You have escaped the room.';
+  // 入力値が正しいかチェックする
+  if (isNaN(guess) || guess < 1 || guess > 100) {
+    result.textContent = '1から100までの数字を入力してください。';
+    return;
+  }
+
+  // 結果を表示する
+  if (guess === answer) {
+    result.textContent = '正解です!';
+  } else if (guess < answer) {
+    result.textContent = 'もっと大きな数です。';
   } else {
-    message.textContent = 'The door is locked. Find the key first.';
-    if (!hintShown) {
-      hint.classList.remove('hidden');
-      hintShown = true;
-    }
+    result.textContent = 'もっと小さな数です。';
   }
 });
