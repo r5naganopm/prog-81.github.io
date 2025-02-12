@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>脱出ゲーム</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div id="game">
-    <div id="room">
-      <div id="door" class="locked">
-        <span>locked</span>
-      </div>
-      <div id="table">
-        <div id="key" class="hidden">
-          <span>Key</span>
-        </div>
-      </div>
-    </div>
-    <div id="message">
-      Click around the room to find the key and unlock the door.
-    </div>
-    <div id="hint" class="hidden">
-  <span>Hint: The key is on the table.</span>
-</div>
-  </div>
-  <script src="game.js"></script>
-</body>
+  <head>
+    <title>数当てゲーム</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>数当てゲーム</h1>
+    <p>1から100までの数を当ててください。</p>
+    <input type="number" id="guessInput" placeholder="数字を入力">
+    <button id="guessButton">予想する</button>
+    <p id="result"></p>
+    <script src="game.js"></script>
+  </body>
 </html>
