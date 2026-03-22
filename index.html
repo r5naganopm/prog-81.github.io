@@ -171,11 +171,20 @@
             margin-bottom: 5px;
         }
 
+        /* ★変更：右寄せに変更 */
         .change-notice {
             color: #cc0000;
             font-size: 14px;
             font-weight: bold;
-            text-align: center;
+            text-align: right;  /* 右寄せ */
+            margin-bottom: 0;
+        }
+
+        /* ★追加：黒線で囲むボックス */
+        .bordered-box {
+            border: 2px solid #000;
+            padding: 12px;
+            margin-top: 8px;
             margin-bottom: 15px;
         }
 
@@ -500,74 +509,81 @@
 
             <!-- タイトル -->
             <p class="page-title">
-                『路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術』について技術公募を行います。（R7．3．23（月）～R7．5．22（金））
-            </p>
-            <p class="change-notice">～新技術導入促進の取り組み～ </p>
-
-            <!-- 本文 -->
-            <p class="body-text">
-                国土交通省道路局では、令和元年12月に開催された「道路技術懇談会（座長：久田真東北大学大学院教授）」において、道路分野における新技術導入促進方針（案）が示され、良い技術は活用するという方針の下、異業種・他分野技術や新材料など、これまで必ずしも十分でなかった分野も含めて導入を促進していくこととしております。また、令和７年３月に開催された同懇談会において道路局より「令和7年度新技術導入促進計画（案）」が提示され、有識者等による議論を経て計画が公表されたところです。
-            </p>
-            <p class="body-text">
-                路面下空洞調査では、調査地点における1.5〜2.0m程度までの深さの空洞検知が可能な状況ですが、昨今の道路陥没事故を踏まえれば、より深い位置の空洞を探査・検知できる技術や、モニタリングによる陥没発生リスク箇所の探査・検知技術が求められるところです。
-            </p>
-            <p class="body-text">
-                そこで、「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」について、求める性能及び性能を確認する方法を整備していくことを目的とし、以下を要件として公募します。
-            </p>
-            <p class="body-text">
-                本公募は、国土交通省より「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」について新技術導入促進機関に指定された一般財団法人先端建設技術センター（以下、ACTECという）が実施するものです。
+                『路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術』について技術公募を行います。（R7．3．<span style="border:2px solid #cc0000; padding:1px 4px;">23（月）</span>～R7．5．22（金））
             </p>
 
-            <!-- 省リンク -->
-            <div class="ministry-link">
-                国土交通省記者発表（<a href="https://www.mlit.go.jp/" target="_blank">https://www.</a>）
-            </div>
+            <!-- ★右寄せに変更 -->
+            <p class="change-notice">～新技術導入促進の取り組み～</p>
 
-            <hr class="section-divider">
+            <!-- ★黒線で囲むボックス（change-notice以下の本文をすべて内包） -->
+            <div class="bordered-box">
 
-            <!-- 技術公募について -->
-            <div class="section-title">＜技術公募について＞</div>
+                <!-- 本文 -->
+                <p class="body-text">
+                    国土交通省道路局では、令和元年12月に開催された「道路技術懇談会（座長：久田真東北大学大学院教授）」において、道路分野における新技術導入促進方針（案）が示され、良い技術は活用するという方針の下、異業種・他分野技術や新材料など、これまで必ずしも十分でなかった分野も含めて導入を促進していくこととしております。また、令和７年３月に開催された同懇談会において道路局より「令和7年度新技術導入促進計画（案）」が提示され、有識者等による議論を経て計画が公表されたところです。
+                </p>
+                <p class="body-text">
+                    路面下空洞調査では、調査地点における1.5〜2.0m程度までの深さの空洞検知が可能な状況ですが、昨今の道路陥没事故を踏まえれば、より深い位置の空洞を探査・検知できる技術や、モニタリングによる陥没発生リスク箇所の探査・検知技術が求められるところです。
+                </p>
+                <p class="body-text">
+                    そこで、「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」について、求める性能及び性能を確認する方法を整備していくことを目的とし、以下を要件として公募します。
+                </p>
+                <p class="body-text">
+                    本公募は、国土交通省より「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」について新技術導入促進機関に指定された一般財団法人先端建設技術センター（以下、ACTECという）が実施するものです。
+                </p>
 
-            <!-- 対象技術 -->
-            <div class="section-title">●対象技術：</div>
-            <div class="tech-name">「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」</div>
-
-            <hr class="section-divider">
-
-            <!-- 公募期間 -->
-            <div class="period-section">
-                <div class="period-label">公募期間：</div>
-                <div class="period-date">
-                    令和７年３月２３日〜令和７年５月２２日（金）
+                <!-- 省リンク -->
+                <div class="ministry-link">
+                    国土交通省記者発表（<a href="https://www.mlit.go.jp/" target="_blank">https://www.</a>）
                 </div>
-            </div>
 
-            <hr class="section-divider">
+                <hr class="section-divider">
 
-            <!-- 公募要領 -->
-            <div class="documents-section">
-                <div class="documents-label">公募要領：</div>
-                <p class="doc-intro">以下の３冊に分冊掲載します。</p>
-                <div class="doc-links">
-                    <div class="doc-link-item">
-                        <a href="#">公募要領（PDF）</a>
-                    </div>
-                    <div class="doc-link-item">
-                        <a href="#">応募資料作成要領（PDF）</a>
+                <!-- 技術公募について -->
+                <div class="section-title">＜技術公募について＞</div>
+
+                <!-- 対象技術 -->
+                <div class="section-title">●対象技術：</div>
+                <div class="tech-name">「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」</div>
+
+                <hr class="section-divider">
+
+                <!-- 公募期間 -->
+                <div class="period-section">
+                    <div class="period-label">公募期間：</div>
+                    <div class="period-date">
+                        令和７年３月２３日〜令和７年５月２２日（金）
                     </div>
                 </div>
-                <div class="format-list">
-                    <a href="#">様式１式（様式１〜６）（Excel）</a>
-                    <ul class="format-items">
-                        <li>（様式-1）「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」に関する公募　申請書</li>
-                        <li>（様式-2）技術概要書（路面下のより深い位置の空洞を探査・検知できる技術応募用）</li>
-                        <li>（様式-3）性能確認試験について（路面下のより深い位置の空洞を探査・検知できる技術応募用）</li>
-　　　　　　　　　　　　　<li> (様式-4) 技術概要書（モニタリングにより陥没発生リスク箇所を探査・検知）</li>
-                        <li> (様式-5) 性能確認試験について(モニタリングにより陥没発生リスク箇所を探査。検知できる技術応募用)
-                        <li> (様式-6) 実績内訳簿
-                    </ul>
+
+                <hr class="section-divider">
+
+                <!-- 公募要領 -->
+                <div class="documents-section">
+                    <div class="documents-label">公募要領：</div>
+                    <p class="doc-intro">以下の３冊に分冊掲載します。</p>
+                    <div class="doc-links">
+                        <div class="doc-link-item">
+                            <a href="#">公募要領（PDF）</a>
+                        </div>
+                        <div class="doc-link-item">
+                            <a href="#">応募資料作成要領（PDF）</a>
+                        </div>
+                    </div>
+                    <div class="format-list">
+                        <a href="#">様式１式（様式１〜６）（Excel）</a>
+                        <ul class="format-items">
+                            <li>（様式-1）「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」に関する公募　申請書</li>
+                            <li>（様式-2）技術概要書（路面下のより深い位置の空洞を探査・検知できる技術応募用）</li>
+                            <li>（様式-3）性能確認試験について（路面下のより深い位置の空洞を探査・検知できる技術応募用）</li>
+                            <li> (様式-4) 技術概要書（モニタリングにより陥没発生リスク箇所を探査・検知）</li>
+                        　　<li> (様式-5) 性能確認試験について(モニタリングにより陥没発生リスク箇所を探査。検知できる技術応募用)</li>
+                        　　<li> (様式-6) 実績内訳簿</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+
+            </div><!-- /bordered-box -->
 
         </div><!-- /left-content -->
 
