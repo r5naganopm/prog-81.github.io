@@ -1,15 +1,627 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>数当てゲーム</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <h1>数当てゲーム</h1>
-    <p>1から100までの数を当ててください。</p>
-    <input type="number" id="guessInput" placeholder="数字を入力">
-    <button id="guessButton">予想する</button>
-    <p id="result"></p>
-    <script src="game.js"></script>
-  </body>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTEC 先端建設技術センター</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'メイリオ', 'MS Gothic', sans-serif;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* ===== ヘッダー ===== */
+        .header {
+            background-color: #fff;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo .actec-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1a5276;
+            letter-spacing: 2px;
+        }
+
+        .header-logo .actec-full {
+            font-size: 10px;
+            color: #555;
+        }
+
+        .header-logo .center-name {
+            font-size: 13px;
+            color: #1a5276;
+            font-weight: bold;
+        }
+
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .header-links a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
+        .english-btn {
+            background-color: #1a5276;
+            color: #fff;
+            border: none;
+            padding: 3px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .font-size-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: #555;
+        }
+
+        .font-size-controls span {
+            font-size: 11px;
+        }
+
+        .font-btn {
+            border: 1px solid #999;
+            background: #f5f5f5;
+            cursor: pointer;
+            padding: 1px 5px;
+            font-size: 11px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 5px;
+        }
+
+        .search-box input {
+            border: 1px solid #ccc;
+            padding: 3px 8px;
+            font-size: 12px;
+            width: 150px;
+        }
+
+        .search-btn {
+            background-color: #1a5276;
+            color: #fff;
+            border: none;
+            padding: 3px 10px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* ===== ナビゲーション ===== */
+        .nav {
+            background-color: #1a5276;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 25px;
+            font-size: 13px;
+            display: inline-block;
+            border-right: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .nav a:first-child {
+            border-left: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .nav a:hover {
+            background-color: #2e86c1;
+        }
+
+        /* ===== メインコンテンツ ===== */
+        .main-content {
+            display: flex;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px;
+            gap: 15px;
+        }
+
+        /* ===== 左コンテンツ ===== */
+        .left-content {
+            flex: 1;
+        }
+
+        /* ===== タイトル部分 ===== */
+        .page-title {
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+
+        .change-notice {
+            color: #cc0000;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* ===== 本文テキスト ===== */
+        .body-text {
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-indent: 1em;
+        }
+
+        /* ===== 省リンク ===== */
+        .ministry-link {
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .ministry-link a {
+            color: #1a5276;
+            text-decoration: underline;
+        }
+
+        /* ===== セクション ===== */
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 15px 0 8px 0;
+            color: #333;
+        }
+
+        .tech-name {
+            font-size: 13px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+
+        /* ===== 公募期間 ===== */
+        .period-section {
+            margin-bottom: 15px;
+        }
+
+        .period-label {
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .period-label::before {
+            content: "●";
+            color: #1a5276;
+        }
+
+        .period-date {
+            font-size: 13px;
+            padding-left: 15px;
+        }
+
+        .period-date .highlight-box {
+            display: inline-block;
+            border: 1px solid #cc0000;
+            padding: 1px 5px;
+            color: #333;
+        }
+
+        .change-notice-small {
+            color: #cc0000;
+            font-size: 13px;
+            font-weight: bold;
+            padding-left: 15px;
+            margin-top: 3px;
+        }
+
+        /* ===== 公募要領 ===== */
+        .documents-section {
+            margin-bottom: 15px;
+        }
+
+        .documents-label {
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+
+        .documents-label::before {
+            content: "●";
+            color: #1a5276;
+        }
+
+        .doc-intro {
+            font-size: 13px;
+            margin-bottom: 8px;
+            padding-left: 15px;
+        }
+
+        .doc-links {
+            padding-left: 15px;
+            margin-bottom: 10px;
+        }
+
+        .doc-link-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .doc-link-item a {
+            color: #1a5276;
+            text-decoration: underline;
+        }
+
+        .pdf-badge {
+            background-color: #cc0000;
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 4px;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+
+        .change-badge {
+            color: #cc0000;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ===== 様式リスト ===== */
+        .format-list {
+            padding-left: 15px;
+        }
+
+        .format-list a {
+            color: #1a5276;
+            text-decoration: underline;
+            font-size: 13px;
+        }
+
+        .format-items {
+            list-style: none;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .format-items li {
+            font-size: 13px;
+            margin-bottom: 5px;
+            line-height: 1.6;
+        }
+
+        .format-items li::before {
+            content: "・";
+        }
+
+        /* ===== 右サイドバー ===== */
+        .right-sidebar {
+            width: 200px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-banner {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 8px;
+            font-size: 11px;
+        }
+
+        .banner-sstrace {
+            background: linear-gradient(135deg, #1a3a5c, #2e6da4);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .banner-sstrace .logo-text {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .banner-sstrace .sub-text {
+            font-size: 10px;
+            margin-top: 3px;
+        }
+
+        .banner-sstrace .system-text {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+            background-color: rgba(255,255,255,0.2);
+            padding: 2px 5px;
+        }
+
+        .banner-netis {
+            background-color: #2e86c1;
+            color: #fff;
+            padding: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .banner-netis .netis-icon {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .banner-recycle {
+            background-color: #e8f5e9;
+            border: 1px solid #4caf50;
+            padding: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 11px;
+            color: #2e7d32;
+        }
+
+        .banner-ai {
+            background-color: #e3f2fd;
+            border: 1px solid #1565c0;
+            padding: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 11px;
+            color: #0d47a1;
+        }
+
+        .banner-award {
+            background-color: #fff8e1;
+            border: 1px solid #f57f17;
+            padding: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 11px;
+            color: #e65100;
+            font-weight: bold;
+        }
+
+        .banner-quality {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            justify-content: center;
+        }
+
+        .quality-badge {
+            border: 1px solid #999;
+            padding: 5px;
+            text-align: center;
+            font-size: 10px;
+            width: 60px;
+        }
+
+        /* 区切り線 */
+        hr.section-divider {
+            border: none;
+            border-top: 1px dashed #ccc;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== ヘッダー ===== -->
+    <div class="header">
+        <div class="header-logo">
+            <div>
+                <div class="actec-text">ACTEC</div>
+                <div class="actec-full">Advanced Construction Technology Center</div>
+            </div>
+            <div>
+                <div style="font-size:10px; color:#999;">一般財団法人</div>
+                <div class="center-name">先端建設技術センター</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div style="display:flex; align-items:center; gap:15px;">
+                <div class="header-links">
+                    <a href="#">アクセス</a>
+                    <a href="#">関連リンク</a>
+                </div>
+                <button class="english-btn">English</button>
+            </div>
+            <div style="display:flex; align-items:center; gap:15px;">
+                <div class="font-size-controls">
+                    <span>文字サイズ：</span>
+                    <button class="font-btn">小</button>
+                    <button class="font-btn">中</button>
+                    <button class="font-btn">大</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="">
+                    <button class="search-btn">検索</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ナビゲーション ===== -->
+    <nav class="nav">
+        <a href="#">トップページ</a>
+        <a href="#">ACTECの概要</a>
+        <a href="#">事業内容</a>
+        <a href="#">お問い合わせ</a>
+        <a href="#">サイトマップ</a>
+    </nav>
+
+    <!-- ===== メインコンテンツ ===== -->
+    <div class="main-content">
+
+        <!-- 左コンテンツ -->
+        <div class="left-content">
+
+            <!-- タイトル -->
+            <p class="page-title">
+                『路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術』について技術公募を行います。（R7．3．23（月）</span>～R7．5．22（金））
+            </p>
+            <p class="change-notice">～新技術導入促進の取り組み～ </p>
+
+            <!-- 本文 -->
+            <p class="body-text">
+                国土交通省道路局では、令和元年12月に開催された「道路技術懇談会（座長：久田真東北大学大学院教授）」において、道路分野における新技術導入促進方針（案）が示され、良い技術は活用するという方針の下、異業種・他分野技術や新材料など、これまで必ずしも十分でなかった分野も含めて導入を促進していくこととしております。また、令和７年３月に開催された同懇談会において道路局より「令和7年度新技術導入促進計画（案）」が提示され、有識者等による議論を経て計画が公表されたところです。
+            </p>
+            <p class="body-text">
+                路面下空洞調査では、調査地点における1.5〜2.0m程度までの深さの空洞検知が可能な状況ですが、昨今の道路陥没事故を踏まえれば、より深い位置の空洞を探査・検知できる技術や、モニタリングによる陥没発生リスク箇所の探査・検知技術が求められるところです。
+            </p>
+            <p class="body-text">
+                そこで、「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」について、求める性能及び性能を確認する方法を整備していくことを目的とし、以下を要件として公募します。
+            </p>
+            <p class="body-text">
+                本公募は、国土交通省より「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」について新技術導入促進機関に指定された一般財団法人先端建設技術センター（以下、ACTECという）が実施するものです。
+            </p>
+
+            <!-- 省リンク -->
+            <div class="ministry-link">
+                国土交通省記者発表（<a href="https://www.mlit.go.jp/" target="_blank">https://www.</a>）
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- 技術公募について -->
+            <div class="section-title">＜技術公募について＞</div>
+
+            <!-- 対象技術 -->
+            <div class="section-title">●対象技術：</div>
+            <div class="tech-name">「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」</div>
+
+            <hr class="section-divider">
+
+            <!-- 公募期間 -->
+            <div class="period-section">
+                <div class="period-label">公募期間：</div>
+                <div class="period-date">
+                    令和７年３月２３日（<span class="highlight-box">月</span>）〜令和７年５月２２日（金）
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- 公募要領 -->
+            <div class="documents-section">
+                <div class="documents-label">公募要領：</div>
+                <p class="doc-intro">以下の３冊に分冊掲載します。</p>
+                <div class="doc-links">
+                    <div class="doc-link-item">
+                        <a href="#">公募要領（PDF）</a>
+                        <span class="change-badge">中身が変更の可能性あり</span>
+                    </div>
+                    <div class="doc-link-item">
+                        <a href="#">応募資料作成要領（PDF）</a>
+                    </div>
+                </div>
+                <div class="format-list">
+                    <a href="#">様式１式（様式１〜６）（Excel）</a>
+                    <ul class="format-items">
+                        <li>（様式-1）「路面下のより深い位置の空洞や陥没発生リスク箇所を探査・検知できる技術」に関する公募　申請書</li>
+                        <li>（様式-2）技術概要書（路面下のより深い位置の空洞を探査・検知できる技術応募用）</li>
+                        <li>（様式-3）性能確認試験について（路面下のより深い位置の空洞を探査・検知できる技術応募用）</li>
+　　　　　　　　　　　　　<li> (様式-4) 技術概要書（モニタリングにより陥没発生リスク箇所を探査・検知）</li>
+                        <li> (様式-5) 性能確認試験について(モニタリングにより陥没発生リスク箇所を探査。検知できる技術応募用)
+                        <li> (様式-6) 実績内訳簿
+                    </ul>
+                </div>
+            </div>
+
+        </div><!-- /left-content -->
+
+        <!-- 右サイドバー -->
+        <div class="right-sidebar">
+
+            <!-- SSTrace Banner -->
+            <div class="banner-sstrace">
+                <div style="font-size:9px; letter-spacing:1px; margin-bottom:3px;">エヌエス・ストレース</div>
+                <div class="logo-text">SSTRACE</div>
+                <div class="system-text">★ SYSTEM</div>
+                <div class="sub-text">トレーサビリティシステム</div>
+            </div>
+
+            <!-- NETIS Banner -->
+            <div class="banner-netis">
+                <div class="netis-icon">NETIS</div>
+                <div style="font-size:10px; margin-top:3px;">登録申請支援</div>
+            </div>
+
+            <!-- リサイクルバナー -->
+            <div class="banner-recycle">
+                🌿 建設副産物リサイクル<br>
+                広報推進ホームページ
+            </div>
+
+            <!-- AIバナー -->
+            <div class="banner-ai">
+                🤖 先端技術研究開発<br>
+                <strong>AI 研究会</strong>
+            </div>
+
+            <!-- 賞バナー -->
+            <div class="banner-award">
+                🏆 第25回国土技術開発賞<br>
+                <span style="color:#2e86c1; font-size:12px;">応募受付中</span>
+            </div>
+
+            <!-- 品質バナー -->
+            <div class="banner-quality">
+                <div class="quality-badge">
+                    <div style="font-size:14px;">MSR</div>
+                    <div>ISO</div>
+                </div>
+                <div class="quality-badge">
+                    <div style="font-size:14px;">JAB</div>
+                    <div>認定</div>
+                </div>
+            </div>
+
+        </div><!-- /right-sidebar -->
+
+    </div><!-- /main-content -->
+
+</body>
 </html>
